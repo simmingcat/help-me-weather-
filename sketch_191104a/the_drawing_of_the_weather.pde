@@ -36,9 +36,9 @@ void setWeather(){
   apiRectX1 = width * 520/600;
   apiRectY1 = height * 700/700;
   
-  apiX2 = width * 1/16;
+  apiX2 = width * 1/3;
   apiY2 = height * 600/700 ;
-  apiRectX2 = width * 160/600;
+  apiRectX2 = width * 400/600;
   apiRectY2 = height * 700/700;
   
   apiX3 = width * 1/16;
@@ -46,15 +46,17 @@ void setWeather(){
   apiRectX3 = width * 300/600;
   apiRectY3 = height * 700/700;
   
-  weatherX= width * 1/16;
-  weatherY= height * 1/3;
-  weatherApiX= width * 1/16;
-  weatherApiY= height * 1/3;
+  weatherX= width * 1/8;
+  weatherY= height * 2/7;
+  weatherApiX= width * 1/4;
+  weatherApiY= height * 3.5/7;
   
   noLoop();
 }
  
 void drawWeather(){
+  textDraw();
+  
   setGradient(0, 0, 800, height, b2, b1, X_AXIS);
   
    fill(white);
