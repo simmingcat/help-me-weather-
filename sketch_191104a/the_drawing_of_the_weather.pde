@@ -1,3 +1,4 @@
+  //kanazawa
 color pink = 0;
 float titleX, titleY, titleRectX, titleRectY;
 float quitX, quitY, quitRectX, quitRectY;
@@ -6,13 +7,18 @@ float apiX2, apiY2, apiRectX2, apiRectY2;
 float apiX3, apiY3, apiRectX3, apiRectY3;
 float CurrentX, CurrentY, CurrentApiX, CurrentApiY;
 float weatherX, weatherY, weatherApiX, weatherApiY;
+float nextScreenX, NextScreenY;
+float CityX, CityY, CityApiX, CityApiY;
+
+int NextScreenC = 40;
+int NextScreenD = 40;
 
 int Y_AXIS = 1;
 int X_AXIS = 2;
 color b1, b2;
-color white = #FFFFFC ;
-
-void setWeather(){
+color white = #FFFFFC;
+ 
+ void setWeather(){
    b1 = color(#FFBCBC);
   b2 = color(#F7FF89);
   
@@ -33,29 +39,36 @@ void setWeather(){
   
   apiX1 = width * 1/16 ;
   apiY1 = height * 600/700 ;
-  apiRectX1 = width * 520/600;
-  apiRectY1 = height * 700/700;
+  apiRectX1 = width * 1/3;
+  apiRectY1 = height * 600/700;
   
   apiX2 = width * 1/3;
   apiY2 = height * 600/700 ;
-  apiRectX2 = width * 400/600;
-  apiRectY2 = height * 700/700;
+  apiRectX2 = width * 1/3;
+  apiRectY2 = height * 600/700;
   
-  apiX3 = width * 1/16;
+  apiX3 = width * 2/3;
   apiY3 = height * 600/700 ;
-  apiRectX3 = width * 300/600;
+  apiRectX3 = width * 150/600;
   apiRectY3 = height * 700/700;
   
   weatherX= width * 1/8;
-  weatherY= height * 2/7;
+  weatherY= height * 1/4;
   weatherApiX= width * 1/4;
-  weatherApiY= height * 3.5/7;
+  weatherApiY= height * 1/4;
+  
+  CityX= width * 1/8;
+  CityY= height * 4.1/8;
+  CityApiX= width * 1/4;
+  CityApiY= height * 1/40;
+  
+  nextScreenX = height * 1/20;
+  NextScreenY = width * 1/2;
   
   noLoop();
 }
  
-void drawWeather(){
-  textDraw();
+ void KanazawaScreen(){
   
   setGradient(0, 0, 800, height, b2, b1, X_AXIS);
   
@@ -67,16 +80,16 @@ void drawWeather(){
    rect(CurrentX, CurrentY, CurrentApiX, CurrentApiY, 4);
    
    rect(apiX1, apiY1, apiRectX1, apiRectY1);
-   //rect(apiX2, apiY2, apiRectX2, apiRectY2);
-   //rect(apiX3, apiY3, apiRectX3, apiRectY3);
+   rect(apiX2, apiY2, apiRectX2, apiRectY2);
+   rect(apiX3, apiY3, apiRectX3, apiRectY3);
    
    rect(weatherX, weatherY, weatherApiX, weatherApiY);
-
+   rect(CityX, CityY, CityApiX, CityApiY);
+   
+   textDraw();
 }
 
 void setGradient(int x, int y, float w, float h, color b1, color b2, int axis ) {
-
-  noFill();
 
   if (axis == Y_AXIS) {  // Top to bottom gradient
     for (int i = y; i <= y+h; i++) {
@@ -85,8 +98,8 @@ void setGradient(int x, int y, float w, float h, color b1, color b2, int axis ) 
       stroke(c);
       line(x, i, x+w, i);
     }
-  }
-   else if (axis == X_AXIS) {  // Left to right gradient
+  }  
+  else if (axis == X_AXIS) {  // Left to right gradient
     for (int i = x; i <= x+w; i++) {
       float inter = map(i, x, x+w, 0, 1);
       color c = lerpColor(b1, b2, inter);
